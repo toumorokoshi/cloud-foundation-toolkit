@@ -13,7 +13,7 @@
 ## CONSUMPTION
 
   1. Clone GoogleCloudPlatform/cloud-foundation-toolkit repository:
-  
+
       ```bash
       git clone https://github.com/GoogleCloudPlatform/cloud-foundation-toolkit.git
       ```
@@ -35,7 +35,7 @@ All steps are run from the current directory ([config-connector/solutions/iam/he
 
 1. Review and update the values in `./values.yaml`.
 
-1. Validate and install the sample with Helm.
+2. Validate and install the sample with Helm.
 
     ```bash
     # validate your chart
@@ -51,32 +51,41 @@ All steps are run from the current directory ([config-connector/solutions/iam/he
     helm install . --set iamPolicyMember.iamMember=user:name@example.com --generate-name
     ```
 
-1. _Optionaly_, you can customize optional values by explictly setting them when installing the solution:
+3. _Optionally_, you can customize optional values by explicitly setting them when installing the solution:
+
     ```bash
     # install your chart with a new service account name
     helm install . --set serviceAccount.name=new-service-account,iamPolicyMember.iamMember=user:name@example.com --generate-name
-    ```  
+    ```
+
     Or,
+
     ```bash
     # install your chart with a new role
     helm install . --set iamPolicyMember.role=roles/iam.serviceAccountTokenCreator,iamPolicyMember.iamMember=user:name@example.com --generate-name
     ```
+
     Or set them both in one command.
 
-1. Check the created helm release to verify the installation:
+4. Check the created helm release to verify the installation:
+
     ```bash
     helm list
     ```
-    Check the status of the service account resource by running: 
+
+    Check the status of the service account resource by running:
+
     ```bash
     kubectl describe iamserviceaccount [service account name]
     ```
+
     Check the status of the IAM Policy Member:
+
     ```bash
     kubectl describe iampolicymember iampolicymember-service-account
     ```
 
-1. Clean up the installation:
+5. Clean up the installation:
 
     ```bash
     # list Helm releases to obtain release name
